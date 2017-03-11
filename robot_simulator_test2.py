@@ -69,6 +69,11 @@ class RobotTests(unittest.TestCase):
         luftrobot.warp(5)
         self.assertEqual((0,5,0), luftrobot.coordinates)
 
+    def test_warp_east(self):
+        luftrobot = Luftrobot(EAST,0 ,0 ,0)
+        luftrobot.warp(5)
+        self.assertEqual((5,0,0), luftrobot.coordinates)
+
     def test_simulate_prog1a(self): 
     #Robot moves and then flies up (U) thrice and down (D) once
         luftrobot = Luftrobot()
