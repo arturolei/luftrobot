@@ -1,7 +1,6 @@
 #this is the test suite for "Luftrobot". This should be an extension of robot simulator.
 import unittest
 
-from robot_simulator import Robot, NORTH, EAST, SOUTH, WEST
 from luftrobot_simulator import Luftrobot, NORTH, EAST, SOUTH, WEST
 
 
