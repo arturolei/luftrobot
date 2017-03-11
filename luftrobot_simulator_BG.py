@@ -61,7 +61,9 @@ class Luftrobot(Robot):
         self._instructions['D'] = self.descend
     
     
-    @property
+    @property #decorator, not unique to python, functional programming pattern
+    #decorators used a lot in functional programming. 
+    #a function that 'decorates' or adds onto another function
     def coordinates(self):
         return (self._x, self._y, self._z)
     
