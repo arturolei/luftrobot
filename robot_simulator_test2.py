@@ -9,13 +9,13 @@ class RobotTests(unittest.TestCase):
 
     def test_init(self):
         luftrobot = Luftrobot()
-        self.assertEqual((0, 0, 0), robot.coordinates)
-        self.assertEqual(NORTH, robot.bearing)
+        self.assertEqual((0, 0, 0), luftrobot.coordinates)
+        self.assertEqual(NORTH, luftrobot.bearing)
 
     def test_setup(self):
         luftrobot = Luftrobot(SOUTH, -1, 1, 0)
-        self.assertEqual((-1, 1), robot.coordinates)
-        self.assertEqual(SOUTH, robot.bearing)
+        self.assertEqual((-1, 1,0), luftrobot.coordinates)
+        self.assertEqual(SOUTH, luftrobot.bearing)
 
     def test_turn_right(self):
         luftrobot = Luftrobot()
@@ -67,7 +67,7 @@ class RobotTests(unittest.TestCase):
     def test_warp(self):
         luftrobot = Luftrobot(NORTH, 0, 0,0)
         luftrobot.warp(5)
-        self.assertEqual((5,0,0), luftrobot.coordinates)
+        self.assertEqual((0,5,0), luftrobot.coordinates)
 
     def test_simulate_prog1a(self): 
     #Robot moves and then flies up (U) thrice and down (D) once
