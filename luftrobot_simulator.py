@@ -8,7 +8,10 @@ class Robot:
 		self.bearing = bearing
 		self.x= x
 		self.y = y
-		self.coordinates = (self.x,self.y)
+
+	@property
+	def coordinates(self):
+		return (self.x, self.y)
 
 	def turn_right(self):
 		self.bearing = (self.bearing-90) % 360 #Yay! Negative modulus!
@@ -19,17 +22,17 @@ class Robot:
 	def advance(self):
 		if self.bearing == NORTH: #if we are going forward, facing north, y+1
 			self.y+=1
-			self.coordinates = (self.x,self.y) 
+			#self.coordinates = (self.x,self.y) 
 			#NB: The previous line and 'self.coordinates' line could be combined.
 		if self.bearing == SOUTH: #if we are going forward, facing south, y-1
 			self.y-=1
-			self.coordinates = (self.x,self.y)
+			#self.coordinates = (self.x,self.y)
 		if self.bearing == EAST: #if we are going forward, facing east, x+1
 			self.x+=1
-			self.coordinates = (self.x,self.y)
+			#self.coordinates = (self.x,self.y)
 		if self.bearing == WEST: #if we are going forward, facing west, x-1
 			self.x-=1
-			self.coordinates = (self.x,self.y)
+			#self.coordinates = (self.x,self.y)
 
 	def simulate(self, pathString):
 		listString = list(pathString) #turn string into list of letters
@@ -45,22 +48,27 @@ class Luftrobot(Robot):
 	def __init__ (self, bearing = NORTH ,x=0, y=0, altitude= 0): #default direction, FYI, is North
 		Robot.__init__(self,bearing, x, y)
 		self.altitude = altitude
-		self.coordinates = (x,y,altitude)		
+	
+	@property
+	def coordinates(self):
+		return (self.x, self.y, self.altitude)
+
 	def warp(self, distance):
 		for i in range(distance):
 			self.advance()
+	
 	def goback(self): #reverse of advance
 		if self.bearing == NORTH: #if we are going forward, facing north, y+1
 			self.y-=1
-			self.coordinates = (self.x,self.y) 
+			#self.coordinates = (self.x,self.y) 
 			#NB: The previous line and 'self.coordinates' line could be combined.
 		if self.bearing == SOUTH: #if we are going forward, facing south, y-1
 			self.y+=1
-			self.coordinates = (self.x,self.y)
+			#self.coordinates = (self.x,self.y)
 		if self.bearing == EAST: #if we are going forward, facing east, x+1
 			self.x-=1
-			self.coordinates = (self.x,self.y)
+			#self.coordinates = (self.x,self.y)
 		if self.bearing == WEST: #if we are going forward, facing west, x-1
 			self.x+=1
-			self.coordinates = (self.x,self.y)
+			#self.coordinates = (self.x,self.y)
 

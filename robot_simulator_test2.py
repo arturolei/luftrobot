@@ -77,7 +77,7 @@ class RobotTests(unittest.TestCase):
     #Robot moves and then flies up (U) thrice and down (D) once
         luftrobot = Luftrobot()
         luftrobot.simulate("LAARALAUUUD")
-        self.assertEqual((-4,1,2), luftrobot.coordinates)
+        self.assertEqual((-3,1,2), luftrobot.coordinates)
         self.assertEqual(WEST,luftrobot.bearing)
 
     def test_simulate_prog1b(self): #Simple case, robot don't fly. 
@@ -89,7 +89,7 @@ class RobotTests(unittest.TestCase):
     def test_simulate_prog1c(self): #Robot ordered to descend into the ground
         luftrobot = Luftrobot()
         luftrobot.simulate("LAARALAD") #the robot does not go into the ground
-        self.assertEqual((-4,1,0), luftrobot.coordinates) #error handling must occur
+        self.assertEqual((-3,1,0), luftrobot.coordinates) #error handling must occur
         self.assertEqual("FYI, I CAN'T DESCEND INTO GROUND, IDIOT",ValueError)
 
     def test_simulate_prog1d(self): #Robot goes backward (B)
