@@ -61,20 +61,22 @@ class Luftrobot(Robot):
         self._instructions['D'] = self.descend
     
     
-    @property #decorator, not unique to python, functional programming pattern
-    #decorators used a lot in functional programming. 
-    #a function that 'decorates' or adds onto another function
+    @property #uses a decorator (decorators are not unique to python,
+    #they're a functional programming pattern - a function that 
+    #'wraps' or 'decorates' another function).  @property is a special 
+    #decorator in python that returns the result of the coordinates function
+    #as an 'object property' when self.coordinates is called.
     def coordinates(self):
         return (self._x, self._y, self._z)
     
     
     def goback(self):
-        moves = {NORTH: -1, SOUTH: 1, EAST: 1, WEST: -1}
+        moves = {NORTH: -1, SOUTH: 1, EAST: -1, WEST: 1}
         
-        if self.bearing in (EAST, WEST):
+        if self.bearing in (NORTH, SOUTH):
             self._y += moves[self.bearing]
             
-        if self.bearing in (NORTH, SOUTH):
+        if self.bearing in (EAST, WEST):
             self._x += moves[self.bearing]
      
     def ascend(self):
@@ -84,11 +86,14 @@ class Luftrobot(Robot):
         self._z -= 1
         
         if self._z < 0:
+            self._z = 0
             raise ValueError("FYI, I CAN'T DESCEND INTO GROUND, IDIOT")
+ 
+    def warp(self, distance):
+        moves = {NORTH: 1, SOUTH: -1, EAST: 1, WEST: -1}
+        
+        if self.bearing in (NORTH, SOUTH):
+            self._y += moves[self.bearing] * distance
             
-        self._z = 0
-            
-    def warp(self, x):
-        self._x = x
-    
-    
+        if self.bearing in (EAST, WEST):
+            self._x += moves[self.bearing] * distance

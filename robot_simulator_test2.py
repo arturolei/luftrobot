@@ -43,13 +43,13 @@ class RobotTests(unittest.TestCase):
     def test_advance_negative_south(self):
         luftrobot = Luftrobot(SOUTH, 0, 0,0)
         luftrobot.advance()
-        self.assertEqual((0, -1,0), luftrobot.coordinates)
+        self.assertEqual((0,-1,0), luftrobot.coordinates)
         self.assertEqual(SOUTH, luftrobot.bearing)
     
     def test_goback_negative_north(self):
-        luftrobot = Luftrobot(0, 0,0)
+        luftrobot = Luftrobot(0,0,0)
         luftrobot.goback()
-        self.assertEqual((-1, 0,0), luftrobot.coordinates)
+        self.assertEqual((0,-1,0), luftrobot.coordinates)
         self.assertEqual(NORTH, luftrobot.bearing)  
 
     #def test_altitude(self): #see if luftrobot has given altitude
@@ -88,9 +88,11 @@ class RobotTests(unittest.TestCase):
 
     def test_simulate_prog1c(self): #Robot ordered to descend into the ground
         luftrobot = Luftrobot()
-        luftrobot.simulate("LAARALAD") #the robot does not go into the ground
-        self.assertEqual((-3,1,0), luftrobot.coordinates) #error handling must occur
-        self.assertEqual("FYI, I CAN'T DESCEND INTO GROUND, IDIOT",ValueError)
+        luftrobot.simulate("LAARALAD")
+        #error handling must occur, and the Robot coordinates must not go into the ground
+        self.assertRaises(ValueError, msg="FYI, I CAN'T DESCEND INTO GROUND, IDIOT")
+        self.assertEqual((-3,1,0), luftrobot.coordinates) 
+        
 
     def test_simulate_prog1d(self): #Robot goes backward (B)
         luftrobot = Luftrobot()
