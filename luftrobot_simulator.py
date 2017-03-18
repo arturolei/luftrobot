@@ -75,6 +75,8 @@ class Luftrobot(Robot):
 		self.altitude+=1
 	def descend(self):
 		self.altitude-=1
+		if self.altitude < 0:
+			self.altitude ==0
 	def simulate(self, pathString):
 		listString = list(pathString) #turn string into list of letters
 		for step in listString: #'translate' list of strings into movements

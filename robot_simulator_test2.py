@@ -47,7 +47,7 @@ class RobotTests(unittest.TestCase):
         self.assertEqual(SOUTH, luftrobot.bearing)
     
     def test_goback_negative_north(self):
-        luftrobot = Luftrobot(0,0,0)
+        luftrobot = Luftrobot(NORTH, 0,0,0)
         luftrobot.goback()
         self.assertEqual((0,-1,0), luftrobot.coordinates)
         self.assertEqual(NORTH, luftrobot.bearing)  
@@ -83,7 +83,7 @@ class RobotTests(unittest.TestCase):
     def test_simulate_prog1b(self): #Simple case, robot don't fly. 
         luftrobot = Luftrobot(NORTH, 0, 0,0)
         luftrobot.simulate("LAAARALA")
-        self.assertEqual((-3, 1,0), luftrobot.coordinates)
+        self.assertEqual((-4, 1,0), luftrobot.coordinates)
         self.assertEqual(WEST, luftrobot.bearing)
 
     def test_simulate_prog1c(self): #Robot ordered to descend into the ground
