@@ -71,4 +71,23 @@ class Luftrobot(Robot):
 		if self.bearing == WEST: #if we are going forward, facing west, x-1
 			self.x+=1
 			#self.coordinates = (self.x,self.y)
+	def ascend(self):
+		self.altitude+=1
+	def descend(self):
+		self.altitude-=1
+	def simulate(self, pathString):
+		listString = list(pathString) #turn string into list of letters
+		for step in listString: #'translate' list of strings into movements
+			if step =="R":
+				self.turn_right()
+			if step == "L":
+				self.turn_left()
+			if step =="A":
+				self.advance()
+			if step == "U":
+				self.ascend()
+			if step =="D":
+				self.descend()
+
+
 
